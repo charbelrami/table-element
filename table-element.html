@@ -1,0 +1,80 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../paper-input/paper-input.html">
+
+<dom-module id="table-element">
+  <template>
+    <style>
+      :host {
+        @apply(--paper-font-common-base);
+      }
+    </style>
+
+    <iron-ajax url="{{url}}" handle-as="json" last-response="{{data}}" auto></iron-ajax>
+
+    <paper-input value="{{search}}"></paper-input>
+
+    <table>
+      <thead>
+        <tr>
+          <template is="dom-repeat" items="{{keys}}">
+            <th>{{item}}</th>
+          </template>
+        </tr>
+      </thead>
+      <tbody>
+        <template is="dom-repeat" items="{{data}}" filter="{{computeFilter(search)}}">
+          <tr hidden$="{{isHidden(item)}}">
+            <td>{{item.userId}}</td>
+            <td>{{item.id}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.completed}}</td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'table-element',
+
+        properties: {
+          url: String,
+          hiddenKey: String,
+          searchKey: String
+        },
+
+        observers: [
+          '_getData(data.*)'
+        ],
+
+        _getData: function(obj) {
+          var keys = Object.keys(obj);
+          this.keys = Object.keys(obj[keys[1]][0]);
+        },
+
+        isHidden: function(item) {
+          var hiddenKey = this.hiddenKey;
+          return item[hiddenKey];
+        },
+
+        computeFilter: function(string) {
+          var searchKey = this.searchKey;
+          if (!string) {
+            return null;
+          } else {
+            string = string.toLowerCase();
+            return function(item) {
+              var value = item[searchKey].toLowerCase();
+              return (value.indexOf(string) != -1);
+            };
+          }
+        }
+      });
+    }());
+  </script>
+</dom-module>

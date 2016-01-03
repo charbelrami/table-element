@@ -1,0 +1,27 @@
+{
+  "name": "table-element",
+  "version": "0.1.0",
+  "description": "",
+  "main": "table-element.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charbelrami/table-element.git"
+  },
+  "keywords": [
+    "table",
+    "filter",
+    "search",
+    "polymer",
+    "custom-element",
+    "web-components"
+  ],
+  "author": "Charbel Rami",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/charbelrami/table-element/issues"
+  },
+  "homepage": "https://github.com/charbelrami/table-element#readme"
+}
