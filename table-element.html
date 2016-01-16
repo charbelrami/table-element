@@ -4,15 +4,10 @@
 
 <dom-module id="table-element">
   <template>
-    <style>
-      :host {
-        @apply(--paper-font-common-base);
-      }
-    </style>
 
     <iron-ajax url="{{url}}" handle-as="json" last-response="{{data}}" auto></iron-ajax>
 
-    <paper-input value="{{search}}" label="Search"></paper-input>
+    <paper-input value="{{search}}" label="{{searchLabel}}"></paper-input>
 
     <table>
       <thead>
@@ -45,7 +40,11 @@
         properties: {
           url: String,
           hiddenKey: String,
-          searchKey: String
+          searchKey: String,
+          searchLabel: {
+            type: String,
+            value: 'Search'
+          }
         },
 
         observers: [
