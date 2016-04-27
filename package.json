@@ -4,7 +4,8 @@
   "description": "",
   "main": "table-element.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "version": "git add -A .",
+    "postversion": "git push --follow-tags && npm publish"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/charbelrami/table-element/issues"
   },
-  "homepage": "https://github.com/charbelrami/table-element#readme"
+  "homepage": "https://github.com/charbelrami/table-element#readme",
+  "devDependencies": {
+    "polyserve": "^0.10.0"
+  }
 }
